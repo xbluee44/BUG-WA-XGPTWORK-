@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XGPTWORK - Login</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0d1117; /* Dark background, similar to GitHub */
+            color: #d1d5da; /* Light gray text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Prevent scrollbar from neon effects */
+            position: relative;
+        }
+
+        /* Neon Glow Effect */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, #00f0ff88 0%, transparent 70%);
+            animation: glow 10s ease-in-out infinite alternate;
+            z-index: -1;
+        }
+
+        @keyframes glow {
+            0% {
+                transform: scale(0.8) rotate(0deg);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.2) rotate(180deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.8) rotate(360deg);
+                opacity: 0.8;
+            }
+        }
+
+        .login-container {
+            background-color: rgba(13, 17, 23, 0.9); /* Slightly transparent dark background */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.6), 0 0 60px rgba(0, 240, 255, 0.3); /* Neon blue shadow */
+            text-align: center;
+            width: 90%; /* Responsive width for mobile */
+            max-width: 400px; /* Max width for larger screens */
+            border: 1px solid #00f0ff; /* Neon blue border */
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: #00f0ff; /* Neon blue heading */
+            margin-bottom: 30px;
+            text-shadow: 0 0 8px #00f0ff; /* Subtle glow for text */
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #00f0ff; /* Neon blue label */
+            font-weight: bold;
+        }
+
+        .input-group input {
+            width: calc(100% - 20px); /* Adjust for padding */
+            padding: 12px 10px;
+            border: 2px solid #00f0ff; /* Neon blue border */
+            border-radius: 8px;
+            background-color: #0d1117; /* Dark input background */
+            color: #d1d5da; /* Light gray text */
+            font-size: 16px;
+            box-shadow: 0 0 5px rgba(0, 240, 255, 0.4); /* Input glow */
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #33ffff; /* Lighter neon on focus */
+            box-shadow: 0 0 10px rgba(51, 255, 255, 0.8);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #00f0ff; /* Neon blue button */
+            color: #0d1117; /* Dark text for contrast */
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.6); /* Button glow */
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background-color: #33ffff; /* Lighter neon on hover */
+            box-shadow: 0 0 25px rgba(51, 255, 255, 0.9);
+        }
+
+        .error-message {
+            color: #ff3366; /* Red for error messages */
+            margin-top: 15px;
+            font-size: 14px;
+            display: none; /* Hidden by default */
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(255, 51, 102, 0.6);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .login-container {
+                padding: 30px;
+                margin: 20px;
+            }
+            h1 {
+                font-size: 28px;
+            }
+            button {
+                padding: 12px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>XGPTWORK - Login Panel</h1>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">USERNAME</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">PASSWORD</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">LOGIN</button>
+            <p class="error-message" id="errorMessage"></p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah form reload halaman
+
+            const usernameInput = document.getElementById('username').value;
+            const passwordInput = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            // Cek kredensial
+            if (usernameInput === 'KAMM' && passwordInput === 'FROMGPT') {
+                errorMessage.style.display = 'none';
+                alert('Login Berhasil! Selamat datang di XGPTWORK.');
+                window.location.href = 'bug_panel.html'; // Redirect ke halaman bug setelah login
+            } else {
+                errorMessage.textContent = 'Username atau Password salah. Silakan coba lagi.';
+                errorMessage.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

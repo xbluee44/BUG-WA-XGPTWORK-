@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XGPTWORK - Kirim Bug WA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #000;
+            color: #00FFFF; /* Biru Neon */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.8) 70%);
+            z-index: 0;
+            opacity: 0.7;
+            animation: pulseBackground 10s infinite alternate;
+        }
+
+        @keyframes pulseBackground {
+            0% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.05); }
+            100% { opacity: 0.7; transform: scale(1); }
+        }
+
+        .container {
+            background-color: rgba(0, 50, 50, 0.4); /* Biru Neon Transparan */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.6); /* Glow Biru Neon */
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00FFFF;
+            margin-bottom: 25px;
+            font-size: 2.2em;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+            letter-spacing: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #00EEEE;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: calc(100% - 20px);
+            padding: 12px;
+            border: 1px solid #00FFFF;
+            background-color: rgba(0, 255, 255, 0.1);
+            color: #00FFFF;
+            border-radius: 8px;
+            font-size: 1em;
+            box-sizing: border-box;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #00FFD0;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+            background-color: rgba(0, 255, 255, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00FFFF;
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+            letter-spacing: 1px;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #00E0E0;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .message.success {
+            background-color: rgba(0, 255, 0, 0.2);
+            color: #00FF00;
+            border: 1px solid #00FF00;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+        }
+
+        .message.error {
+            background-color: rgba(255, 0, 0, 0.2);
+            color: #FF0000;
+            border: 1px solid #FF0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+        }
+
+        #senderContent {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: rgba(0, 255, 255, 0.1);
+            border: 1px dashed #00FFFF;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            word-wrap: break-word;
+            line-height: 1.5;
+            min-height: 120px; /* Diperpanjang untuk sender yang lebih panjang */
+            text-align: left;
+            box-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+            white-space: pre-wrap; /* Mempertahankan spasi dan baris baru */
+            overflow-y: auto; /* Agar bisa digulir jika terlalu panjang */
+            max-height: 300px; /* Batasan tinggi */
+        }
+
+        /* Responsif untuk HP */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                width: 95%;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            input[type="text"],
+            textarea,
+            select,
+            button {
+                padding: 10px;
+                font-size: 1em;
+            }
+            #senderContent {
+                min-height: 150px;
+                max-height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>XGPTWORK - KIRIM BUG WA</h1>
+        <form id="bugForm">
+            <div class="form-group">
+                <label for="phoneNumber">Nomor Target (misal: 6281234567890):</label>
+                <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Masukkan nomor WA target" pattern="[0-9+]+" required>
+            </div>
+            <div class="form-group">
+                <label for="bugType">Pilih Jenis Bug:</label>
+                <select id="bugType" name="bugType" required>
+                    <option value="">-- Pilih Jenis Bug --</option>
+                    <option value="crash_android">CRASH ANDROID</option>
+                    <option value="crash_iphone">CRASH IPHONE</option>
+                    <option value="spam_chat">SPAM CHAT</option>
+                    <option value="delay_infinity">DELAY INFINITY</option>
+                    <option value="eterclose">ETERCLOSE</option>
+                    <option value="lag_super_berat">LAG SUPER BERAT</option>
+                    <option value="notification_bomb">NOTIFICATION BOMB</option>
+                    <option value="ghost_message">GHOST MESSAGE</option> <!-- Bug baru -->
+                    <option value="random_call">RANDOM CALL TRIGGER</option> <!-- Bug baru -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="senderContent">Otomatisasi Sender (akan terisi):</label>
+                <div id="senderContent"></div>
+            </div>
+            <button type="submit">KIRIM BUG</button>
+            <div id="responseMessage" class="message"></div>
+        </form>
+    </div>
+
+    <script>
+      const bugName = "XGPTWORK"; // Nama proyek Anda
+const mainSenderId = "HAHHHDDEV & FormGPT"; // Nama pengirim utama
+const senderContentDiv = document.getElementById('senderContent');
+const bugTypeSelect = document.getElementById('bugType');
+const responseMessageDiv = document.getElementById('responseMessage');
+
+// Fungsi untuk mengisi sender secara otomatis
+function updateSender() {
+    const selectedBugType = bugTypeSelect.value;
+    let senderText = "";
+    // Prefix untuk setiap pesan, menunjukkan sumbernya
+    const bugMessagePrefix = `😈🔥 From ${bugName} by ${mainSenderId} 🔥😈\n\n`;
+
+    // Loop untuk menambahkan spasi vertikal agar pesan lebih sulit dibaca sekilas
+    const verticalSpace = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+
+    switch (selectedBugType) {
+        case 'crash_android':
+            senderText = `${bugMessagePrefix}🔥🔥☠️☠️ ANDROID CRASH ULTIMATE INITIATED ☠️☠️🔥🔥\n\n"Peringatan Tegas! Perangkat Anda baru saja terinfeksi kode 'Quantum Instability' dari kami. Kode ini akan memicu serangkaian kegagalan sistem di aplikasi WhatsApp Anda, menyebabkan 'Force Close' berulang kali pada interval acak. Setiap upaya membuka aplikasi akan disambut dengan kehancuran sesaat. Aplikasi lainnya mungkin akan ikut terseret dalam kekacauan ini. Tidak ada jalan kembali!"\n\n"Ini bukan sekadar glitch, ini adalah 'Digital Black Hole' yang dirancang untuk menguras kesabaran dan sumber daya Android Anda. Notifikasi error akan membanjiri, layar akan berkedip, dan kontrol akan terlepas dari genggaman Anda. Rasakan sendiri kekuatan kehancuran siber yang tak terbendung!"\n\n${verticalSpace}⚠️ SYSTEM OVERLOAD DETECTED - DATA FRAGMENTATION INITIATED ⚠️\n\n`;
+            break;
+        case 'crash_iphone':
+            senderText = `${bugMessagePrefix}🍏💥💀 IPHONE CRASH ANNIHILATOR PROTOCOL ACTIVE 💀💥🍏\n\n"Selamat datang di era baru ketidakstabilan iOS. Kode 'iBreaker' telah diinjeksikan! Ini dirancang khusus untuk mengeksploitasi kerentanan inti iOS, memaksa WhatsApp Anda untuk 'respring' atau 'crash' secara tak terduga. Rasakan performa iPhone Anda menurun drastis, notifikasi error kritis bermunculan, dan pengalaman pengguna yang berubah menjadi mimpi buruk digital. Setiap sentuhan akan terasa seperti perjudian!"\n\n"Kredibilitas perangkat Apple Anda akan diuji. Jangan heran jika aplikasi lain tiba-tiba mogok, atau baterai terkuras habis tanpa sebab. Ini adalah 'Ghost in the Machine' yang kami kirimkan, sebuah pengingat bahwa bahkan sistem yang paling 'aman' sekalipun bisa dijinakkan. Bersiaplah untuk kekacauan yang tak terhindarkan!"\n\n${verticalSpace}❌ iOS INTEGRITY COMPROMISED - KERNEL PANIC IMMINENT ❌\n\n`;
+            break;
+        case 'spam_chat':
+            senderText = `${bugMessagePrefix}📨💣🔥 SPAM CHAT INFERNO STRIKE LAUNCHED 🔥💣📨\n\n"Bersiaplah untuk banjir bah digital! Kode 'Tsunami Digital' ini akan membanjiri chat Anda dengan jutaan pesan sampah yang tak berarti, atau mengulang pesan inti bug kami hingga tak terbatas. Ponsel Anda akan bergetar tanpa henti, notifikasi akan meledak, dan riwayat obrolan Anda akan menjadi lautan teks yang tak berujung. Mencoba menghapus? Sia-sia saja, karena setiap detik akan ada yang baru datang!"\n\n"Ini adalah serangan 'Denial of Service' personal. Anda tidak akan bisa berkomunikasi dengan normal, mencari pesan penting akan menjadi misi mustahil. Layar Anda akan terus menyala, baterai terkuras, dan kesabaran Anda akan diuji sampai titik didih. Rasakan sensasi tak berdaya di tengah badai informasi yang kami ciptakan!"\n\n${verticalSpace}🌀 FLOOD WARNING ACTIVATED - RESISTENCE IS FUTILE 🌀\n\n`;
+            break;
+        case 'delay_infinity':
+            senderText = `${bugMessagePrefix}⏳🌀🕰️ DELAY INFINITY LOOP ENGAGED 🕰️🌀⏳\n\n"Waktu adalah ilusi, terutama bagi Anda sekarang. Kode 'Chronos Lock' telah diaktifkan! Setiap pesan yang Anda kirim atau terima di WhatsApp akan mengalami penundaan yang tak berujung, terjebak dalam limbo digital. Pesan 'pending' akan menumpuk menjadi gunung, notifikasi akan datang terlambat, dan komunikasi real-time akan menjadi kenangan pahit!"\n\n"Aplikasi Anda tidak hanya lambat; ia terjebak dalam dimensi lain. Rasakan frustrasi menunggu balasan yang tak kunjung tiba, atau pesan penting yang terlambat terbaca. Ini adalah 'Time Dilation' yang kami paksakan, sebuah eksperimen dalam memperlambat eksistensi digital Anda. Setiap detik akan terasa seperti jam!"\n\n${verticalSpace}🐢 TIME CORRUPTION DETECTED - COMMUNICATION HALTED 🐢\n\n`;
+            break;
+        case 'eterclose':
+            senderText = `${bugMessagePrefix}💥🚫🔄 ETERNAL CLOSE PROTOCOL INITIATED - APOCALYPSE MODE 🔄🚫💥\n\n"Selamat, Anda telah terpilih untuk 'Termination Loop'! Kode 'Phoenix Crash' telah disematkan. Setiap kali Anda mencoba membuka WhatsApp, ia akan dengan kejam ditutup paksa dalam hitungan milidetik. Ini adalah siklus abadi kegagalan, sebuah tarian tanpa akhir antara harapan dan kehancuran aplikasi. WhatsApp Anda telah menjadi hantu, terlihat namun tidak bisa disentuh!"\n\n"Mengapa ini terjadi? Karena kami menginginkannya. Aplikasi Anda akan menjadi 'Infinite Loop of Self-Destruction', sebuah bukti nyata bahwa kehendak digital kami lebih kuat dari fungsi normal perangkat Anda. Jangan mencoba memaksanya, karena setiap sentuhan hanya akan mempercepat siklus kehancuran. Nikmati kediaman paksa dari aplikasi favorit Anda!"\n\n${verticalSpace}⛔ APPLICATION TERMINATION ENGINE ACTIVE - NO ACCESS GRANTED ⛔\n\n`;
+            break;
+        case 'lag_super_berat': // Bug baru
+            senderText = `${bugMessagePrefix}🐢❄️🧊 LAG SUPER BERAT INFECTION - SYSTEM STALL! 🧊❄️🐢\n\n"Perhatian! Perangkat Anda baru saja mengalami infeksi 'Digital Sclerosis'. Kode ini dirancang untuk membebani CPU dan RAM Anda hingga batas maksimal. Saat Anda mencoba membuka chat ini, atau bahkan saat aplikasi WhatsApp berjalan di latar belakang, perangkat Anda akan melambat drastis, membeku, dan menjadi sama responsifnya dengan batu bata. Setiap sentuhan akan terasa seperti berenang di lautan lem!"\n\n"Pengalaman navigasi Anda akan berubah menjadi penyiksaan. Aplikasi lain akan ikut terseret dalam 'Web of Slowness' ini. Baterai Anda akan terkuras habis karena upaya perangkat yang putus asa untuk mengatasi beban. Ini adalah 'Systemic Paralysis' yang kami kirimkan, menguji batas kesabaran Anda terhadap performa yang terdegradasi. Kecepatan adalah masa lalu!"\n\n${verticalSpace}🚨 SYSTEM OVERLOAD! LAG DETECTED - CPU AT MAX CAPACITY 🚨\n\n`;
+            break;
+        case 'notification_bomb': // Bug baru
+            senderText = `${bugMessagePrefix}🔔💥📢 NOTIFICATION BOMB ASSAULT - EAR DRUMS BEWARE! 📢💥🔔\n\n"Siap-siap untuk hujan notifikasi tanpa henti! Kode 'Sonar Shockwave' telah aktif. Ponsel Anda akan diserang dengan ledakan pemberitahuan yang tak terhitung jumlahnya, setiap detik, setiap menit. Bar notifikasi akan penuh sesak, bunyi dering dan getaran akan menjadi soundtrack baru dalam hidup Anda. Tidak ada waktu untuk bernapas, hanya gelombang demi gelombang interupsi!"\n\n"Ini adalah 'Sensory Overload Protocol'. Tidur Anda akan terganggu, fokus Anda akan hancur, dan ketenangan pikiran Anda akan menjadi debu. Mencoba mematikan notifikasi? Kami sudah mengantisipasinya. Ini adalah teror digital yang dirancang untuk mengganggu setiap aspek ketenangan Anda, sebuah simfoni kekacauan yang kami orkestrasikan. Rasakan sendiri kegilaan notifikasi!"\n\n${verticalSpace}🔊 INCOMING NOTIFICATION STRIKE - SILENCE IS A MYTH 🔊\n\n`;
+            break;
+        case 'ghost_message': // Bug baru
+            senderText = `${bugMessagePrefix}👻💬🌫️ GHOST MESSAGE MANIFESTATION - HAUNTED CHAT! 🌫️💬👻\n\n"Waspada! Chat Anda baru saja terinfeksi 'Phantom Text Virus'. Tujuan kode ini? Mengirim pesan yang tidak terlihat, terhapus secara otomatis, atau muncul dengan karakter yang rusak secara acak. Anda akan merasa menerima pesan penting, namun ketika dibuka, pesan itu menghilang atau hanya menampilkan kekacauan karakter. Realitas pesan Anda akan dipertanyakan!"\n\n"Ini adalah 'Digital Poltergeist' yang mempermainkan pikiran Anda. Anda akan terus-menerus memeriksa ponsel, merasa ada pesan namun tidak bisa membacanya, atau melihat pesan aneh yang lenyap begitu saja. Kebingungan dan frustrasi akan menjadi teman setia Anda. Bukti fisik pesan penting akan menjadi sesuatu yang sulit Anda genggam. Selamat datang di zona abu-abu pesan yang tak ada!"\n\n${verticalSpace}👁️‍🗨️ UNSEEN MESSAGE DELIVERED - TRUST NO TEXT 👁️‍🗨️\n\n`;
+            break;
+        case 'random_call': // Bug baru
+            senderText = `${bugMessagePrefix}📞🚨⚠️ RANDOM CALL TRIGGER - AN UNWANTED INVITATION! ⚠️🚨📞\n\n"Perhatian! Kode 'Echo Call' telah diaktifkan di perangkat Anda. Kode ini dirancang untuk memicu panggilan WhatsApp acak, baik panggilan suara atau video, ke kontak-kontak Anda tanpa sepengetahuan atau izin Anda. Anda mungkin tiba-tiba sedang menelepon seseorang, atau perangkat Anda akan secara misterius mencoba memulai panggilan. Privasi Anda kini berada di bawah kendali kami!"\n\n"Bersiaplah untuk momen-momen canggung dan kebingungan. Teman atau keluarga Anda mungkin akan menerima panggilan tak terduga dari Anda, bertanya-tanya mengapa. Ini adalah 'Digital Prankster' yang beraksi, mengganggu interaksi sosial Anda dan menciptakan kekacauan di daftar kontak Anda. Kontrol panggilan Anda telah direbut! Setiap dering adalah kejutan yang tidak diinginkan!"\n\n${verticalSpace}👻 UNKNOWN CALL INITIATED - WHO'S ON THE OTHER LINE? 👻\n\n`;
+            break;
+        default:
+            senderText = "Pilih jenis bug dari daftar di atas untuk melihat preview sender terkuat. Setiap pilihan menjanjikan pengalaman 'istimewa' bagi target Anda!";
+            break;
+    }
+    senderContentDiv.textContent = senderText;
+}
+
+// Panggil updateSender saat halaman dimuat dan saat jenis bug berubah
+document.addEventListener('DOMContentLoaded', updateSender);
+bugTypeSelect.addEventListener('change', updateSender);
+
+document.getElementById('bugForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Mencegah form untuk refresh halaman
+
+    const phoneNumber = document.getElementById('phoneNumber').value;
+    const bugType = bugTypeSelect.value;
+    const senderMessage = senderContentDiv.textContent; // Ambil sender yang sudah otomatis terisi
+
+    if (!phoneNumber || bugType === "") { // Perbaiki validasi bugType
+        responseMessageDiv.classList.remove('success');
+        responseMessageDiv.classList.add('error');
+        responseMessageDiv.textContent = '⛔ ALERT: Mohon lengkapi Nomer Telepon dan pilih jenis bug yang sudah "gacor" dari daftar yang tersedia!';
+        return;
+    }
+    
+    // Perbaiki cek senderMessage untuk default message
+    if (senderMessage === "Pilih jenis bug dari daftar di atas untuk melihat preview sender terkuat. Setiap pilihan menjanjikan pengalaman 'istimewa' bagi target Anda!") {
+    responseMessageDiv.classList.remove('success');
+    responseMessageDiv.classList.add('error');
+    responseMessageDiv.textContent = '⛔ ALERT: Mohon pilih kembali jenis bug untuk memastikan pesan siap dikirim!';
+    return;
+}
+
+// Menghilangkan spasi vertikal untuk pengiriman WhatsApp,
+// karena WhatsApp akan mengabaikannya atau menampilkannya secara berbeda.
+// Pastikan hanya pesan bug asli yang dikirim.
+const messageToSend = senderMessage.replace(/\n{10,}/g, '\n\n'); // Mengurangi spasi vertikal berlebihan menjadi 2 baris baru
+
+// Buat URL WhatsApp
+const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(messageToSend)}`;
+
+// Buka link WhatsApp di tab atau jendela baru
+window.open(whatsappUrl, '_blank');
+
+// Berikan feedback kepada pengguna
+responseMessageDiv.classList.remove('error');
+responseMessageDiv.classList.add('success');
+responseMessageDiv.innerHTML = `✅ PESAN BUG <b>${bugType.toUpperCase()}</b> berhasil dibuat! Silakan cek tab/jendela WhatsApp yang baru terbuka untuk mengirim ke <b>${phoneNumber}</b>.`;
+
+// Kosongkan input setelah pengiriman sukses (opsional)
+// document.getElementById('phoneNumber').value = '';
+// bugTypeSelect.value = ''; // Reset pilihan bug
+// updateSender(); // Update sender content to default message
+});
+
+// Anda mungkin ingin menambahkan fungsi untuk menghapus spasi vertikal
+// saat menyalin ke clipboard jika ada fitur salin.
+// const copyButton = document.getElementById('copyButton'); // Misal ada tombol copy
+// if (copyButton) {
+//     copyButton.addEventListener('click', function() {
+//         const textToCopy = senderContentDiv.textContent.replace(/\n{10,}/g, '\n\n\n'); // Kurangi spasi, tapi tetap biarkan beberapa untuk efek
+//         navigator.clipboard.writeText(textToCopy)
+//             .then(() => {
+//                 responseMessageDiv.classList.remove('error');
+//                 responseMessageDiv.classList.add('success');
+//                 responseMessageDiv.textContent = '✅ Pesan bug berhasil disalin ke clipboard!';
+//             })
+//             .catch(err => {
+//                 responseMessageDiv.classList.remove('success');
+//                 responseMessageDiv.classList.add('error');
+//                 responseMessageDiv.textContent = '⛔ Gagal menyalin pesan! Silakan salin secara manual.';
+//                 console.error('Failed to copy: ', err);
+//             });
+//     });
+// }
+    </script>
+</body>
+</html>
